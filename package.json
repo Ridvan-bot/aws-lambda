@@ -1,0 +1,24 @@
+{
+  "name": "aws-lambda",
+  "version": "1.0.0",
+  "description": "Contains AWS Lambda Functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.146",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-lambda": "^3.716.0",
+    "@aws-sdk/client-s3": "^3.717.0",
+    "@aws-sdk/s3-request-presigner": "^3.717.0",
+    "archiver": "^7.0.1",
+    "aws-sdk": "^2.1692.0"
+  }
+}

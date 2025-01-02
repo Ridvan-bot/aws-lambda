@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+# TypeScript
+*.tsbuildinfo
+
+# AWS Lambda
+function.zip
+
+# Build directories
+dist/
+build/
+
+# Environment variables
+.env
+
+# Logs
+commands.txt
+output.json

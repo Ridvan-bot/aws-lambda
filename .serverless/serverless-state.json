@@ -140,7 +140,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-north-1-a1ddd888-80f1",
-                "S3Key": "serverless/aws-lambda-nodejs/dev/1735799950781-2025-01-02T06:39:10.781Z/aws-lambda-nodejs.zip"
+                "S3Key": "serverless/aws-lambda-nodejs/dev/1735801282844-2025-01-02T07:01:22.844Z/aws-lambda-nodejs.zip"
               },
               "Handler": "src/handler.createUser",
               "Runtime": "nodejs18.x",
@@ -169,7 +169,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-north-1-a1ddd888-80f1",
-                "S3Key": "serverless/aws-lambda-nodejs/dev/1735799950781-2025-01-02T06:39:10.781Z/aws-lambda-nodejs.zip"
+                "S3Key": "serverless/aws-lambda-nodejs/dev/1735801282844-2025-01-02T07:01:22.844Z/aws-lambda-nodejs.zip"
               },
               "Handler": "src/handler.getUser",
               "Runtime": "nodejs18.x",
@@ -198,7 +198,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-north-1-a1ddd888-80f1",
-                "S3Key": "serverless/aws-lambda-nodejs/dev/1735799950781-2025-01-02T06:39:10.781Z/aws-lambda-nodejs.zip"
+                "S3Key": "serverless/aws-lambda-nodejs/dev/1735801282844-2025-01-02T07:01:22.844Z/aws-lambda-nodejs.zip"
               },
               "Handler": "src/handler.getUsers",
               "Runtime": "nodejs18.x",
@@ -227,7 +227,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-north-1-a1ddd888-80f1",
-                "S3Key": "serverless/aws-lambda-nodejs/dev/1735799950781-2025-01-02T06:39:10.781Z/aws-lambda-nodejs.zip"
+                "S3Key": "serverless/aws-lambda-nodejs/dev/1735801282844-2025-01-02T07:01:22.844Z/aws-lambda-nodejs.zip"
               },
               "Handler": "src/handler.deleteUser",
               "Runtime": "nodejs18.x",
@@ -251,44 +251,44 @@
               "DeleteUserLogGroup"
             ]
           },
-          "CreateUserLambdaVersionr678GxHYV1jRYjqhMrF5nXVgwGLCYwKXI383jL4t9QU": {
+          "CreateUserLambdaVersionL9XGNw99RvLzpESoeOVqAPg5KslRp8CMJ2bBLW7JQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateUserLambdaFunction"
               },
-              "CodeSha256": "uDNie3/uCNJMBcn6aQcP54xBXU3Ly/hWz2V66JhHl4I="
+              "CodeSha256": "FjWfTgkbonkJj6rBiH1TGFYYtMb4Dfbhvb47mtwOKBw="
             }
           },
-          "GetUserLambdaVersiontNvRrJimY6Z1PtdXIWGZEtUnnsPECh6IdGyAw5WK2M": {
+          "GetUserLambdaVersionWCfvxKKdoGwBwxwOjP7DnwQlNs6kbSsaTHroS97g": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUserLambdaFunction"
               },
-              "CodeSha256": "uDNie3/uCNJMBcn6aQcP54xBXU3Ly/hWz2V66JhHl4I="
+              "CodeSha256": "FjWfTgkbonkJj6rBiH1TGFYYtMb4Dfbhvb47mtwOKBw="
             }
           },
-          "GetUsersLambdaVersionsHd4O3j73n4hCLkj4NP6wvcFRcrCbTJGiIaQlgJtbM": {
+          "GetUsersLambdaVersionLBun14BMayCP4wlSkDbeYREaaXsFpJQeAwZqhNIXJ2k": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUsersLambdaFunction"
               },
-              "CodeSha256": "uDNie3/uCNJMBcn6aQcP54xBXU3Ly/hWz2V66JhHl4I="
+              "CodeSha256": "FjWfTgkbonkJj6rBiH1TGFYYtMb4Dfbhvb47mtwOKBw="
             }
           },
-          "DeleteUserLambdaVersionaHniamo01tAWyuzT9fI09AzAPiYNwdmsQbaV14Ks": {
+          "DeleteUserLambdaVersionHApPwqqOnk8jCjHNkQ9THf57AvmZPfj52CMcdxfmhu8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DeleteUserLambdaFunction"
               },
-              "CodeSha256": "uDNie3/uCNJMBcn6aQcP54xBXU3Ly/hWz2V66JhHl4I="
+              "CodeSha256": "FjWfTgkbonkJj6rBiH1TGFYYtMb4Dfbhvb47mtwOKBw="
             }
           },
           "ApiGatewayRestApi": {
@@ -514,7 +514,7 @@
               "DeleteUserLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1735799945446": {
+          "ApiGatewayDeployment1735801276941": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -707,7 +707,7 @@
           "CreateUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateUserLambdaVersionr678GxHYV1jRYjqhMrF5nXVgwGLCYwKXI383jL4t9QU"
+              "Ref": "CreateUserLambdaVersionL9XGNw99RvLzpESoeOVqAPg5KslRp8CMJ2bBLW7JQ"
             },
             "Export": {
               "Name": "sls-aws-lambda-nodejs-dev-CreateUserLambdaFunctionQualifiedArn"
@@ -716,7 +716,7 @@
           "GetUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUserLambdaVersiontNvRrJimY6Z1PtdXIWGZEtUnnsPECh6IdGyAw5WK2M"
+              "Ref": "GetUserLambdaVersionWCfvxKKdoGwBwxwOjP7DnwQlNs6kbSsaTHroS97g"
             },
             "Export": {
               "Name": "sls-aws-lambda-nodejs-dev-GetUserLambdaFunctionQualifiedArn"
@@ -725,7 +725,7 @@
           "GetUsersLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUsersLambdaVersionsHd4O3j73n4hCLkj4NP6wvcFRcrCbTJGiIaQlgJtbM"
+              "Ref": "GetUsersLambdaVersionLBun14BMayCP4wlSkDbeYREaaXsFpJQeAwZqhNIXJ2k"
             },
             "Export": {
               "Name": "sls-aws-lambda-nodejs-dev-GetUsersLambdaFunctionQualifiedArn"
@@ -734,7 +734,7 @@
           "DeleteUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DeleteUserLambdaVersionaHniamo01tAWyuzT9fI09AzAPiYNwdmsQbaV14Ks"
+              "Ref": "DeleteUserLambdaVersionHApPwqqOnk8jCjHNkQ9THf57AvmZPfj52CMcdxfmhu8"
             },
             "Export": {
               "Name": "sls-aws-lambda-nodejs-dev-DeleteUserLambdaFunctionQualifiedArn"
@@ -792,7 +792,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "CreateUserLambdaVersionr678GxHYV1jRYjqhMrF5nXVgwGLCYwKXI383jL4t9QU"
+        "versionLogicalId": "CreateUserLambdaVersionL9XGNw99RvLzpESoeOVqAPg5KslRp8CMJ2bBLW7JQ"
       },
       "getUser": {
         "handler": "src/handler.getUser",
@@ -814,7 +814,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "GetUserLambdaVersiontNvRrJimY6Z1PtdXIWGZEtUnnsPECh6IdGyAw5WK2M"
+        "versionLogicalId": "GetUserLambdaVersionWCfvxKKdoGwBwxwOjP7DnwQlNs6kbSsaTHroS97g"
       },
       "getUsers": {
         "handler": "src/handler.getUsers",
@@ -836,7 +836,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "GetUsersLambdaVersionsHd4O3j73n4hCLkj4NP6wvcFRcrCbTJGiIaQlgJtbM"
+        "versionLogicalId": "GetUsersLambdaVersionLBun14BMayCP4wlSkDbeYREaaXsFpJQeAwZqhNIXJ2k"
       },
       "deleteUser": {
         "handler": "src/handler.deleteUser",
@@ -858,7 +858,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "DeleteUserLambdaVersionaHniamo01tAWyuzT9fI09AzAPiYNwdmsQbaV14Ks"
+        "versionLogicalId": "DeleteUserLambdaVersionHApPwqqOnk8jCjHNkQ9THf57AvmZPfj52CMcdxfmhu8"
       }
     },
     "resources": {
@@ -904,7 +904,7 @@
     "layers": {}
   },
   "package": {
-    "artifactDirectoryName": "serverless/aws-lambda-nodejs/dev/1735799950781-2025-01-02T06:39:10.781Z",
+    "artifactDirectoryName": "serverless/aws-lambda-nodejs/dev/1735801282844-2025-01-02T07:01:22.844Z",
     "artifact": "aws-lambda-nodejs.zip"
   }
 }

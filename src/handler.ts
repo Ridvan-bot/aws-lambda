@@ -1,8 +1,47 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
 import { DynamoDBClient, PutItemCommand, GetItemCommand, DeleteItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
+import jwt from "jsonwebtoken";
+import { verifyToken } from "./middleware";
 
 const client = new DynamoDBClient({ region: "eu-north-1" });
 const tableName = process.env.USERS_TABLE || "";
+const SECRET_KEY = process.env.SECRET_KEY || "default_secret_key";
+
+export const login: APIGatewayProxyHandler = async (event) => {
+  const body = JSON.parse(event.body || "{}");
+  const { username, password } = body;
+
+  const params = {
+    TableName: tableName,
+    Key: {
+      UserID: { S: username },
+    },
+  };
+
+  try {
+    const command = new GetItemCommand(params);
+    const result = await client.send(command);
+
+    if (result.Item && result.Item.Password.S === password) {
+      const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: "1h" });
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ token }),
+      };
+    } else {
+      return {
+        statusCode: 401,
+        body: JSON.stringify({ message: "Invalid credentials" }),
+      };
+    }
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: "Error logging in", error: err }),
+    };
+  }
+};
 
 export const createUser: APIGatewayProxyHandler = async (event) => {
   const body = JSON.parse(event.body || "{}");
@@ -12,6 +51,7 @@ export const createUser: APIGatewayProxyHandler = async (event) => {
       UserID: { S: body.userId },
       Name: { S: body.name },
       Email: { S: body.email },
+      Password: { S: body.password }
     },
   };
 

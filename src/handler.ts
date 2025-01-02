@@ -54,8 +54,7 @@ export const login: APIGatewayProxyHandler = async (event) => {
 
 export const createUser: APIGatewayProxyHandler = async (event) => {
   try {
-
-    const token = await verifyToken(event);
+    await verifyToken(event);
   } catch (err) {
     return {
       statusCode: 401,
@@ -89,7 +88,16 @@ export const createUser: APIGatewayProxyHandler = async (event) => {
 };
 
 export const getUser: APIGatewayProxyHandler = async (event) => {
+  try {
+    await verifyToken(event);
+  } catch (err) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ message: "Token expired or invalid" }),
+    };
+  }
   const userId = event.pathParameters?.userId || "";
+  
   const params = {
     TableName: tableName,
     Key: {
@@ -113,6 +121,14 @@ export const getUser: APIGatewayProxyHandler = async (event) => {
 };
 
 export const getUsers: APIGatewayProxyHandler = async (event) => {
+  try {
+     await verifyToken(event);
+  } catch (err) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ message: "Token expired or invalid" }),
+    };
+  }
   const params = {
     TableName: tableName,
   };
@@ -133,6 +149,14 @@ export const getUsers: APIGatewayProxyHandler = async (event) => {
 };
 
 export const deleteUser: APIGatewayProxyHandler = async (event) => {
+  try {
+    await verifyToken(event);
+  } catch (err) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ message: "Token expired or invalid" }),
+    };
+  }
   const userId = event.pathParameters?.userId || "";
   const params = {
     TableName: tableName,

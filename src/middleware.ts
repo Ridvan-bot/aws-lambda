@@ -19,7 +19,6 @@ export const verifyToken = async (event: any) => {
       const decoded = await jwt.verify(token.replace('Bearer ', ''), SECRET_KEY);
       return decoded;
     } catch (err) {
-      console.error("Token verification error:", err);
       throw new Error("Invalid token");
     }
   };

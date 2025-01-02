@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.146",
+    "@types/dotenv": "^6.1.1",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.2",
     "serverless-offline": "^14.4.0",
@@ -29,6 +30,7 @@
     "archiver": "^7.0.1",
     "aws-sdk": "^2.1692.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
+    "dotenv": "^10.0.0",
     "jsonwebtoken": "^9.0.2",
     "semantic-release": "^24.2.0",
     "serverless": "^4.4.18"

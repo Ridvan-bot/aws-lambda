@@ -1,0 +1,62 @@
+service: aws-lambda-nodejs
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-north-1
+  environment:
+    USERS_TABLE: UsersTable
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:Query
+        - dynamodb:PutItem
+        - dynamodb:DeleteItem
+      Resource:
+        - arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable
+
+functions:
+  createUser:
+    handler: src/handler.createUser
+    events:
+      - http:
+          path: users
+          method: post
+
+  getUser:
+    handler: src/handler.getUser
+    events:
+      - http:
+          path: users/{userId}
+          method: get
+
+  getUsers:
+    handler: src/handler.getUsers
+    events:
+      - http:
+          path: users
+          method: get
+
+  deleteUser:
+    handler: src/handler.deleteUser
+    events:
+      - http:
+          path: users/{userId}
+          method: delete
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: UsersTable
+        AttributeDefinitions:
+          - AttributeName: UserID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: UserID
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST

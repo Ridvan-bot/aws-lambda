@@ -12,13 +12,16 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.146",
     "@types/node": "^22.10.2",
+    "serverless-offline": "^14.4.0",
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.716.0",
     "@aws-sdk/client-lambda": "^3.716.0",
     "@aws-sdk/client-s3": "^3.717.0",
     "@aws-sdk/s3-request-presigner": "^3.717.0",
     "archiver": "^7.0.1",
-    "aws-sdk": "^2.1692.0"
+    "aws-sdk": "^2.1692.0",
+    "serverless": "^4.4.18"
   }
 }

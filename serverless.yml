@@ -31,7 +31,7 @@ functions:
     handler: src/handler.getUser
     events:
       - http:
-          path: users/{userId}
+          path: user/{userId}
           method: get
 
   getUsers:

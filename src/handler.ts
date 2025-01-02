@@ -2,10 +2,19 @@ import { APIGatewayProxyHandler } from "aws-lambda";
 import { DynamoDBClient, PutItemCommand, GetItemCommand, DeleteItemCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
 import jwt from "jsonwebtoken";
 import { verifyToken } from "./middleware";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+if (
+    !process.env.SECRET_KEY
+)
+    throw new Error('Required environment variables is missing');
+
 
 const client = new DynamoDBClient({ region: "eu-north-1" });
 const tableName = process.env.USERS_TABLE || "";
-const SECRET_KEY = process.env.SECRET_KEY || "default_secret_key";
+const SECRET_KEY = process.env.SECRET_KEY;
 
 export const login: APIGatewayProxyHandler = async (event) => {
   const body = JSON.parse(event.body || "{}");
@@ -44,6 +53,15 @@ export const login: APIGatewayProxyHandler = async (event) => {
 };
 
 export const createUser: APIGatewayProxyHandler = async (event) => {
+  try {
+
+    const token = await verifyToken(event);
+  } catch (err) {
+    return {
+      statusCode: 401,
+      body: JSON.stringify({ message: "Token expired or invalid" }),
+    };
+  }
   const body = JSON.parse(event.body || "{}");
   const params = {
     TableName: tableName,

@@ -7,8 +7,6 @@ provider:
   region: eu-north-1
   environment:
     USERS_TABLE: UsersTable
-    SECRETE_KEY: secretkey
-
 
   iamRoleStatements:
     - Effect: Allow
@@ -47,6 +45,13 @@ functions:
       - http:
           path: user/{userId}
           method: delete
+ 
+  loginUser:
+    handler: src/handler.login
+    events:
+      - http:
+          path: login
+          method: post
 
 resources:
   Resources:

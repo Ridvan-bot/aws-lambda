@@ -89,9 +89,7 @@
                   "Action": [
                     "dynamodb:Scan",
                     "dynamodb:GetItem",
-                    "dynamodb:Query",
-                    "dynamodb:PutItem",
-                    "dynamodb:DeleteItem"
+                    "dynamodb:Query"
                   ],
                   "Resource": "arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable"
                 }
@@ -120,7 +118,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-a1ddd888-80f1",
-          "S3Key": "serverless/aws-lambda-nodejs/dev/1735801282844-2025-01-02T07:01:22.844Z/aws-lambda-nodejs.zip"
+          "S3Key": "serverless/aws-lambda-nodejs/dev/1735807044921-2025-01-02T08:37:24.921Z/aws-lambda-nodejs.zip"
         },
         "Handler": "src/handler.createUser",
         "Runtime": "nodejs18.x",
@@ -130,6 +128,7 @@
         "Environment": {
           "Variables": {
             "USERS_TABLE": "UsersTable",
+            "SECRETE_KEY": "secretkey",
             "NODE_OPTIONS": "--enable-source-maps"
           }
         },
@@ -149,7 +148,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-a1ddd888-80f1",
-          "S3Key": "serverless/aws-lambda-nodejs/dev/1735801282844-2025-01-02T07:01:22.844Z/aws-lambda-nodejs.zip"
+          "S3Key": "serverless/aws-lambda-nodejs/dev/1735807044921-2025-01-02T08:37:24.921Z/aws-lambda-nodejs.zip"
         },
         "Handler": "src/handler.getUser",
         "Runtime": "nodejs18.x",
@@ -159,6 +158,7 @@
         "Environment": {
           "Variables": {
             "USERS_TABLE": "UsersTable",
+            "SECRETE_KEY": "secretkey",
             "NODE_OPTIONS": "--enable-source-maps"
           }
         },
@@ -178,7 +178,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-a1ddd888-80f1",
-          "S3Key": "serverless/aws-lambda-nodejs/dev/1735801282844-2025-01-02T07:01:22.844Z/aws-lambda-nodejs.zip"
+          "S3Key": "serverless/aws-lambda-nodejs/dev/1735807044921-2025-01-02T08:37:24.921Z/aws-lambda-nodejs.zip"
         },
         "Handler": "src/handler.getUsers",
         "Runtime": "nodejs18.x",
@@ -188,6 +188,7 @@
         "Environment": {
           "Variables": {
             "USERS_TABLE": "UsersTable",
+            "SECRETE_KEY": "secretkey",
             "NODE_OPTIONS": "--enable-source-maps"
           }
         },
@@ -207,7 +208,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-a1ddd888-80f1",
-          "S3Key": "serverless/aws-lambda-nodejs/dev/1735801282844-2025-01-02T07:01:22.844Z/aws-lambda-nodejs.zip"
+          "S3Key": "serverless/aws-lambda-nodejs/dev/1735807044921-2025-01-02T08:37:24.921Z/aws-lambda-nodejs.zip"
         },
         "Handler": "src/handler.deleteUser",
         "Runtime": "nodejs18.x",
@@ -217,6 +218,7 @@
         "Environment": {
           "Variables": {
             "USERS_TABLE": "UsersTable",
+            "SECRETE_KEY": "secretkey",
             "NODE_OPTIONS": "--enable-source-maps"
           }
         },
@@ -231,44 +233,44 @@
         "DeleteUserLogGroup"
       ]
     },
-    "CreateUserLambdaVersionL9XGNw99RvLzpESoeOVqAPg5KslRp8CMJ2bBLW7JQ": {
+    "CreateUserLambdaVersionCyxleqdCX5OGe9NyngmrFohWj7oFgnf6JHEgrrRc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateUserLambdaFunction"
         },
-        "CodeSha256": "FjWfTgkbonkJj6rBiH1TGFYYtMb4Dfbhvb47mtwOKBw="
+        "CodeSha256": "LwoCqpg6IfRYVrmNGfkdmYwArEuMGJtctmGflGPkIYI="
       }
     },
-    "GetUserLambdaVersionWCfvxKKdoGwBwxwOjP7DnwQlNs6kbSsaTHroS97g": {
+    "GetUserLambdaVersionDZWwmr9gB6WyJxYot97aOJ13XIAlufrBuZJn9rTXlE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetUserLambdaFunction"
         },
-        "CodeSha256": "FjWfTgkbonkJj6rBiH1TGFYYtMb4Dfbhvb47mtwOKBw="
+        "CodeSha256": "LwoCqpg6IfRYVrmNGfkdmYwArEuMGJtctmGflGPkIYI="
       }
     },
-    "GetUsersLambdaVersionLBun14BMayCP4wlSkDbeYREaaXsFpJQeAwZqhNIXJ2k": {
+    "GetUsersLambdaVersionzLVEeQVy5DmBfai1gugcFvW44JAhlgFrbtkHWw807oU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetUsersLambdaFunction"
         },
-        "CodeSha256": "FjWfTgkbonkJj6rBiH1TGFYYtMb4Dfbhvb47mtwOKBw="
+        "CodeSha256": "LwoCqpg6IfRYVrmNGfkdmYwArEuMGJtctmGflGPkIYI="
       }
     },
-    "DeleteUserLambdaVersionHApPwqqOnk8jCjHNkQ9THf57AvmZPfj52CMcdxfmhu8": {
+    "DeleteUserLambdaVersionqlKOHEaR0vo1gqcV6MT0mDK3ERMIE2cdSciQGPTQOPw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteUserLambdaFunction"
         },
-        "CodeSha256": "FjWfTgkbonkJj6rBiH1TGFYYtMb4Dfbhvb47mtwOKBw="
+        "CodeSha256": "LwoCqpg6IfRYVrmNGfkdmYwArEuMGJtctmGflGPkIYI="
       }
     },
     "ApiGatewayRestApi": {
@@ -281,6 +283,33 @@
           ]
         },
         "Policy": ""
+      }
+    },
+    "ApiGatewayResourceUser": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "user",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceUserUseridVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceUser"
+        },
+        "PathPart": "{userId}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
       }
     },
     "ApiGatewayResourceUsers": {
@@ -310,13 +339,13 @@
         }
       }
     },
-    "ApiGatewayMethodUsersPost": {
+    "ApiGatewayMethodUserPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "POST",
         "RequestParameters": {},
         "ResourceId": {
-          "Ref": "ApiGatewayResourceUsers"
+          "Ref": "ApiGatewayResourceUser"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -448,13 +477,13 @@
         "GetUsersLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayMethodUsersUseridVarDelete": {
+    "ApiGatewayMethodUserUseridVarDelete": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "DELETE",
         "RequestParameters": {},
         "ResourceId": {
-          "Ref": "ApiGatewayResourceUsersUseridVar"
+          "Ref": "ApiGatewayResourceUserUseridVar"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -494,7 +523,7 @@
         "DeleteUserLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1735801276941": {
+    "ApiGatewayDeployment1735807039273": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -503,10 +532,10 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodUsersPost",
+        "ApiGatewayMethodUserPost",
         "ApiGatewayMethodUsersUseridVarGet",
         "ApiGatewayMethodUsersGet",
-        "ApiGatewayMethodUsersUseridVarDelete"
+        "ApiGatewayMethodUserUseridVarDelete"
       ]
     },
     "CreateUserLambdaPermissionApiGateway": {
@@ -687,7 +716,7 @@
     "CreateUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateUserLambdaVersionL9XGNw99RvLzpESoeOVqAPg5KslRp8CMJ2bBLW7JQ"
+        "Ref": "CreateUserLambdaVersionCyxleqdCX5OGe9NyngmrFohWj7oFgnf6JHEgrrRc"
       },
       "Export": {
         "Name": "sls-aws-lambda-nodejs-dev-CreateUserLambdaFunctionQualifiedArn"
@@ -696,7 +725,7 @@
     "GetUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetUserLambdaVersionWCfvxKKdoGwBwxwOjP7DnwQlNs6kbSsaTHroS97g"
+        "Ref": "GetUserLambdaVersionDZWwmr9gB6WyJxYot97aOJ13XIAlufrBuZJn9rTXlE"
       },
       "Export": {
         "Name": "sls-aws-lambda-nodejs-dev-GetUserLambdaFunctionQualifiedArn"
@@ -705,7 +734,7 @@
     "GetUsersLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetUsersLambdaVersionLBun14BMayCP4wlSkDbeYREaaXsFpJQeAwZqhNIXJ2k"
+        "Ref": "GetUsersLambdaVersionzLVEeQVy5DmBfai1gugcFvW44JAhlgFrbtkHWw807oU"
       },
       "Export": {
         "Name": "sls-aws-lambda-nodejs-dev-GetUsersLambdaFunctionQualifiedArn"
@@ -714,7 +743,7 @@
     "DeleteUserLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteUserLambdaVersionHApPwqqOnk8jCjHNkQ9THf57AvmZPfj52CMcdxfmhu8"
+        "Ref": "DeleteUserLambdaVersionqlKOHEaR0vo1gqcV6MT0mDK3ERMIE2cdSciQGPTQOPw"
       },
       "Export": {
         "Name": "sls-aws-lambda-nodejs-dev-DeleteUserLambdaFunctionQualifiedArn"

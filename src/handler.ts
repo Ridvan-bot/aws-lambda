@@ -65,7 +65,7 @@ export const createUser: APIGatewayProxyHandler = async (event) => {
   } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: "Error creating user", error: err }),
+      body: JSON.stringify({ message: "Error creating user", error: err, tableName }),
     };
   }
 };

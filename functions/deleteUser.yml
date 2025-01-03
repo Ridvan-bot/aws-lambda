@@ -1,0 +1,6 @@
+deleteUser:
+  handler: src/handler.deleteUser
+  events:
+    - http:
+        path: user/{userId}
+        method: delete

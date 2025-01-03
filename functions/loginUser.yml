@@ -1,0 +1,10 @@
+loginUser:
+  handler: src/handler.login
+  events:
+    - http:
+        path: login
+        method: post
+
+
+
+

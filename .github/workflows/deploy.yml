@@ -25,6 +25,11 @@ jobs:
          with:
            fetch-depth: 0 
 
+       - name: Set up Node.js
+         uses: actions/setup-node@v4.1.0
+         with:
+            node-version: '20.x'
+
        - name: Set Branch Name
          id: branch_name
          run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
@@ -32,7 +37,16 @@ jobs:
        - name: Set Latest Tag
          id: set_latest_tag
          run: |
-           LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "v0.0.1")
-           echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
+           echo "LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV
            echo "Latest tag is ${{ env.LATEST_TAG }}"
-           
+        
+       - name: Install dependencies
+         run: npm install
+
+       - name: Deploy with Serverless
+         run: npx serverless deploy
+         env:
+           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+           AWS_REGION: eu-north-1
+           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}

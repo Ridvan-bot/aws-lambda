@@ -1,5 +1,11 @@
 # AWS Lambda
 
+![Build Status](https://github.com/Ridvan-bot/aws-lambda/actions/workflows/deploy.yml/badge.svg)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/Ridvan-bot/aws-lambda?label=version&sort=semver)
+![Last Commit](https://img.shields.io/github/last-commit/Ridvan-bot/aws-lambda)
+![GitHub issues](https://img.shields.io/github/issues/Ridvan-bot/aws-lambda)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Ridvan-bot/aws-lambda)
+
 Contains AWS Lambda Functions
 
 ## Setup

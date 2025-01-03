@@ -7,7 +7,7 @@ provider:
   region: eu-north-1
   environment:
     USERS_TABLE: UsersTable
-    SECRET_KEY: your_secret_key
+    SECRET_KEY: ${env:SECRET_KEY}
 
   iamRoleStatements:
     - Effect: Allow

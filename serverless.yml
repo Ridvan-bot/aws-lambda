@@ -7,6 +7,7 @@ provider:
   region: eu-north-1
   environment:
     USERS_TABLE: UsersTable
+    SECRET_KEY: your_secret_key
 
   iamRoleStatements:
     - Effect: Allow
@@ -14,6 +15,7 @@ provider:
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:Query
+        - dynamodb:PutItem
       Resource:
         - arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable
 

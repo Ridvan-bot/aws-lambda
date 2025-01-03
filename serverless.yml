@@ -18,55 +18,15 @@ provider:
         - arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable
 
 functions:
-  createUser:
-    handler: src/handler.createUser
-    events:
-      - http:
-          path: user
-          method: post
-
-  getUser:
-    handler: src/handler.getUser
-    events:
-      - http:
-          path: user/{userId}
-          method: get
-
-  getUsers:
-    handler: src/handler.getUsers
-    events:
-      - http:
-          path: users
-          method: get
-
-  deleteUser:
-    handler: src/handler.deleteUser
-    events:
-      - http:
-          path: user/{userId}
-          method: delete
- 
-  loginUser:
-    handler: src/handler.login
-    events:
-      - http:
-          path: login
-          method: post
+  - ${file(functions/createUser.yml)}
+  - ${file(functions/getUser.yml)}
+  - ${file(functions/getUsers.yml)}
+  - ${file(functions/deleteUser.yml)}
+  - ${file(functions/loginUser.yml)}
 
 resources:
   Resources:
-    UsersTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: UsersTable
-        AttributeDefinitions:
-          - AttributeName: UserID
-            AttributeType: S
-        KeySchema:
-          - AttributeName: UserID
-            KeyType: HASH
-        BillingMode: PAY_PER_REQUEST
-
+    ${file(resources/usersTable.yml)}
 
 plugins:
   - serverless-offline

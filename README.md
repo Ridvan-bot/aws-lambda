@@ -67,7 +67,7 @@ This will package and deploy your functions to AWS Lambda, creating the necessar
 
 ## Environment Variables
 
-Make sure to set up your environment variables in a `.env` file or directly in the `serverless.yml` file under the `provider` section.
+Make sure to set up your environment variables in a `.env` file or directly in the `serverless.yml` file.
 
 ## Directory Structure
 

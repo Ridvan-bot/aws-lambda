@@ -25,6 +25,11 @@ jobs:
          with:
            fetch-depth: 0 
 
+       - name: Set up Node.js
+         uses: actions/setup-node@v3
+         with:
+            node-version: '22.10.2'
+
        - name: Set Branch Name
          id: branch_name
          run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
@@ -44,3 +49,4 @@ jobs:
            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            AWS_REGION: eu-north-1
+           SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}

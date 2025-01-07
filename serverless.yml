@@ -7,6 +7,7 @@ provider:
   region: eu-north-1
   environment:
     USERS_TABLE: UsersTable
+    SECRET_KEY: ${env:SECRET_KEY}
 
   iamRoleStatements:
     - Effect: Allow
@@ -14,8 +15,19 @@ provider:
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:Query
+        - dynamodb:PutItem
       Resource:
         - arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable
+
+
+custom:
+  documentation:
+    version: 1.0.0
+    title: Pohlman Protean API
+    description: API to manage users and data.
+    tags:
+      - name: UsersTable
+        description: Endpoints related to user management.
 
 functions:
   - ${file(functions/createUser.yml)}
@@ -30,3 +42,4 @@ resources:
 
 plugins:
   - serverless-offline
+  - serverless-openapi-documentation

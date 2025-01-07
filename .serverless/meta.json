@@ -7,7 +7,7 @@
     "composeOrgName": null,
     "composeResolverProviders": {
       "default-aws-credential-resolver": "<REDACTED>",
-      "file": {
+      "env": {
         "instance": {
           "credentials": "<REDACTED>",
           "serviceConfigFile": {
@@ -17,7 +17,8 @@
               "runtime": "nodejs18.x",
               "region": "eu-north-1",
               "environment": {
-                "USERS_TABLE": "UsersTable"
+                "USERS_TABLE": "UsersTable",
+                "SECRET_KEY": "<REDACTED>"
               },
               "iamRoleStatements": [
                 {
@@ -25,83 +26,90 @@
                   "Action": [
                     "dynamodb:Scan",
                     "dynamodb:GetItem",
-                    "dynamodb:Query"
+                    "dynamodb:Query",
+                    "dynamodb:PutItem"
                   ],
-                  "Resource": [
-                    "arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable"
-                  ]
+                  "Resource": "arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable"
                 }
               ],
               "stage": "dev",
               "versionFunctions": true
             },
-            "functions": [
-              {
-                "createUser": {
-                  "handler": "src/handler.createUser",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "user",
-                        "method": "post"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "getUser": {
-                  "handler": "src/handler.getUser",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "user/{userId}",
-                        "method": "get"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "getUsers": {
-                  "handler": "src/handler.getUsers",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "users",
-                        "method": "get"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "deleteUser": {
-                  "handler": "src/handler.deleteUser",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "user/{userId}",
-                        "method": "delete"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "loginUser": {
-                  "handler": "src/handler.login",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "login",
-                        "method": "post"
-                      }
-                    }
-                  ]
-                }
+            "custom": {
+              "documentation": {
+                "version": "1.0.0",
+                "title": "Pohlman Protean API",
+                "description": "API to manage users and data.",
+                "tags": [
+                  {
+                    "name": "UsersTable",
+                    "description": "Endpoints related to user management."
+                  }
+                ]
               }
-            ],
+            },
+            "functions": {
+              "createUser": {
+                "handler": "src/handler.createUser",
+                "events": [
+                  {
+                    "http": {
+                      "path": "user",
+                      "method": "post"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-createUser"
+              },
+              "getUser": {
+                "handler": "src/handler.getUser",
+                "events": [
+                  {
+                    "http": {
+                      "path": "user/{userId}",
+                      "method": "get"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-getUser"
+              },
+              "getUsers": {
+                "handler": "src/handler.getUsers",
+                "events": [
+                  {
+                    "http": {
+                      "path": "users",
+                      "method": "get"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-getUsers"
+              },
+              "deleteUser": {
+                "handler": "src/handler.deleteUser",
+                "events": [
+                  {
+                    "http": {
+                      "path": "user/{userId}",
+                      "method": "delete"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-deleteUser"
+              },
+              "loginUser": {
+                "handler": "src/handler.login",
+                "events": [
+                  {
+                    "http": {
+                      "path": "login",
+                      "method": "post"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-loginUser"
+              }
+            },
             "resources": {
               "Resources": {
                 "UsersTable": {
@@ -127,7 +135,154 @@
             },
             "plugins": [
               "serverless-offline",
-              "serverless-plugin-split-stacks"
+              "serverless-openapi-documentation"
+            ]
+          },
+          "configFileDirPath": "C:\\Users\\robin\\Documents\\Foretaget\\pp-projects\\aws-lambda",
+          "config": {
+            "type": "env"
+          },
+          "options": {},
+          "stage": "dev",
+          "dashboard": null,
+          "logger": {
+            "namespace": "s:core:resolver:env",
+            "prefix": null,
+            "prefixColor": null
+          },
+          "_credentialsPromise": "<REDACTED>"
+        },
+        "resolvers": {}
+      },
+      "file": {
+        "instance": {
+          "credentials": "<REDACTED>",
+          "serviceConfigFile": {
+            "service": "aws-lambda-nodejs",
+            "provider": {
+              "name": "aws",
+              "runtime": "nodejs18.x",
+              "region": "eu-north-1",
+              "environment": {
+                "USERS_TABLE": "UsersTable",
+                "SECRET_KEY": "<REDACTED>"
+              },
+              "iamRoleStatements": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:Scan",
+                    "dynamodb:GetItem",
+                    "dynamodb:Query",
+                    "dynamodb:PutItem"
+                  ],
+                  "Resource": "arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable"
+                }
+              ],
+              "stage": "dev",
+              "versionFunctions": true
+            },
+            "custom": {
+              "documentation": {
+                "version": "1.0.0",
+                "title": "Pohlman Protean API",
+                "description": "API to manage users and data.",
+                "tags": [
+                  {
+                    "name": "UsersTable",
+                    "description": "Endpoints related to user management."
+                  }
+                ]
+              }
+            },
+            "functions": {
+              "createUser": {
+                "handler": "src/handler.createUser",
+                "events": [
+                  {
+                    "http": {
+                      "path": "user",
+                      "method": "post"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-createUser"
+              },
+              "getUser": {
+                "handler": "src/handler.getUser",
+                "events": [
+                  {
+                    "http": {
+                      "path": "user/{userId}",
+                      "method": "get"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-getUser"
+              },
+              "getUsers": {
+                "handler": "src/handler.getUsers",
+                "events": [
+                  {
+                    "http": {
+                      "path": "users",
+                      "method": "get"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-getUsers"
+              },
+              "deleteUser": {
+                "handler": "src/handler.deleteUser",
+                "events": [
+                  {
+                    "http": {
+                      "path": "user/{userId}",
+                      "method": "delete"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-deleteUser"
+              },
+              "loginUser": {
+                "handler": "src/handler.login",
+                "events": [
+                  {
+                    "http": {
+                      "path": "login",
+                      "method": "post"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-loginUser"
+              }
+            },
+            "resources": {
+              "Resources": {
+                "UsersTable": {
+                  "Type": "AWS::DynamoDB::Table",
+                  "Properties": {
+                    "TableName": "UsersTable",
+                    "AttributeDefinitions": [
+                      {
+                        "AttributeName": "UserID",
+                        "AttributeType": "S"
+                      }
+                    ],
+                    "KeySchema": [
+                      {
+                        "AttributeName": "UserID",
+                        "KeyType": "HASH"
+                      }
+                    ],
+                    "BillingMode": "PAY_PER_REQUEST"
+                  }
+                }
+              }
+            },
+            "plugins": [
+              "serverless-offline",
+              "serverless-openapi-documentation"
             ]
           },
           "configFileDirPath": "C:\\Users\\robin\\Documents\\Foretaget\\pp-projects\\aws-lambda",
@@ -156,7 +311,8 @@
               "runtime": "nodejs18.x",
               "region": "eu-north-1",
               "environment": {
-                "USERS_TABLE": "UsersTable"
+                "USERS_TABLE": "UsersTable",
+                "SECRET_KEY": "<REDACTED>"
               },
               "iamRoleStatements": [
                 {
@@ -164,83 +320,90 @@
                   "Action": [
                     "dynamodb:Scan",
                     "dynamodb:GetItem",
-                    "dynamodb:Query"
+                    "dynamodb:Query",
+                    "dynamodb:PutItem"
                   ],
-                  "Resource": [
-                    "arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable"
-                  ]
+                  "Resource": "arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable"
                 }
               ],
               "stage": "dev",
               "versionFunctions": true
             },
-            "functions": [
-              {
-                "createUser": {
-                  "handler": "src/handler.createUser",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "user",
-                        "method": "post"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "getUser": {
-                  "handler": "src/handler.getUser",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "user/{userId}",
-                        "method": "get"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "getUsers": {
-                  "handler": "src/handler.getUsers",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "users",
-                        "method": "get"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "deleteUser": {
-                  "handler": "src/handler.deleteUser",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "user/{userId}",
-                        "method": "delete"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "loginUser": {
-                  "handler": "src/handler.login",
-                  "events": [
-                    {
-                      "http": {
-                        "path": "login",
-                        "method": "post"
-                      }
-                    }
-                  ]
-                }
+            "custom": {
+              "documentation": {
+                "version": "1.0.0",
+                "title": "Pohlman Protean API",
+                "description": "API to manage users and data.",
+                "tags": [
+                  {
+                    "name": "UsersTable",
+                    "description": "Endpoints related to user management."
+                  }
+                ]
               }
-            ],
+            },
+            "functions": {
+              "createUser": {
+                "handler": "src/handler.createUser",
+                "events": [
+                  {
+                    "http": {
+                      "path": "user",
+                      "method": "post"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-createUser"
+              },
+              "getUser": {
+                "handler": "src/handler.getUser",
+                "events": [
+                  {
+                    "http": {
+                      "path": "user/{userId}",
+                      "method": "get"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-getUser"
+              },
+              "getUsers": {
+                "handler": "src/handler.getUsers",
+                "events": [
+                  {
+                    "http": {
+                      "path": "users",
+                      "method": "get"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-getUsers"
+              },
+              "deleteUser": {
+                "handler": "src/handler.deleteUser",
+                "events": [
+                  {
+                    "http": {
+                      "path": "user/{userId}",
+                      "method": "delete"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-deleteUser"
+              },
+              "loginUser": {
+                "handler": "src/handler.login",
+                "events": [
+                  {
+                    "http": {
+                      "path": "login",
+                      "method": "post"
+                    }
+                  }
+                ],
+                "name": "aws-lambda-nodejs-dev-loginUser"
+              }
+            },
             "resources": {
               "Resources": {
                 "UsersTable": {
@@ -266,7 +429,7 @@
             },
             "plugins": [
               "serverless-offline",
-              "serverless-plugin-split-stacks"
+              "serverless-openapi-documentation"
             ]
           },
           "configFileDirPath": "C:\\Users\\robin\\Documents\\Foretaget\\pp-projects\\aws-lambda",
@@ -296,7 +459,8 @@
         "runtime": "nodejs18.x",
         "region": "eu-north-1",
         "environment": {
-          "USERS_TABLE": "UsersTable"
+          "USERS_TABLE": "UsersTable",
+          "SECRET_KEY": "<REDACTED>"
         },
         "iamRoleStatements": [
           {
@@ -304,83 +468,90 @@
             "Action": [
               "dynamodb:Scan",
               "dynamodb:GetItem",
-              "dynamodb:Query"
+              "dynamodb:Query",
+              "dynamodb:PutItem"
             ],
-            "Resource": [
-              "arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable"
-            ]
+            "Resource": "arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable"
           }
         ],
         "stage": "dev",
         "versionFunctions": true
       },
-      "functions": [
-        {
-          "createUser": {
-            "handler": "src/handler.createUser",
-            "events": [
-              {
-                "http": {
-                  "path": "user",
-                  "method": "post"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "getUser": {
-            "handler": "src/handler.getUser",
-            "events": [
-              {
-                "http": {
-                  "path": "user/{userId}",
-                  "method": "get"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "getUsers": {
-            "handler": "src/handler.getUsers",
-            "events": [
-              {
-                "http": {
-                  "path": "users",
-                  "method": "get"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "deleteUser": {
-            "handler": "src/handler.deleteUser",
-            "events": [
-              {
-                "http": {
-                  "path": "user/{userId}",
-                  "method": "delete"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "loginUser": {
-            "handler": "src/handler.login",
-            "events": [
-              {
-                "http": {
-                  "path": "login",
-                  "method": "post"
-                }
-              }
-            ]
-          }
+      "custom": {
+        "documentation": {
+          "version": "1.0.0",
+          "title": "Pohlman Protean API",
+          "description": "API to manage users and data.",
+          "tags": [
+            {
+              "name": "UsersTable",
+              "description": "Endpoints related to user management."
+            }
+          ]
         }
-      ],
+      },
+      "functions": {
+        "createUser": {
+          "handler": "src/handler.createUser",
+          "events": [
+            {
+              "http": {
+                "path": "user",
+                "method": "post"
+              }
+            }
+          ],
+          "name": "aws-lambda-nodejs-dev-createUser"
+        },
+        "getUser": {
+          "handler": "src/handler.getUser",
+          "events": [
+            {
+              "http": {
+                "path": "user/{userId}",
+                "method": "get"
+              }
+            }
+          ],
+          "name": "aws-lambda-nodejs-dev-getUser"
+        },
+        "getUsers": {
+          "handler": "src/handler.getUsers",
+          "events": [
+            {
+              "http": {
+                "path": "users",
+                "method": "get"
+              }
+            }
+          ],
+          "name": "aws-lambda-nodejs-dev-getUsers"
+        },
+        "deleteUser": {
+          "handler": "src/handler.deleteUser",
+          "events": [
+            {
+              "http": {
+                "path": "user/{userId}",
+                "method": "delete"
+              }
+            }
+          ],
+          "name": "aws-lambda-nodejs-dev-deleteUser"
+        },
+        "loginUser": {
+          "handler": "src/handler.login",
+          "events": [
+            {
+              "http": {
+                "path": "login",
+                "method": "post"
+              }
+            }
+          ],
+          "name": "aws-lambda-nodejs-dev-loginUser"
+        }
+      },
       "resources": {
         "Resources": {
           "UsersTable": {
@@ -406,19 +577,16 @@
       },
       "plugins": [
         "serverless-offline",
-        "serverless-plugin-split-stacks"
+        "serverless-openapi-documentation"
       ]
     },
-    "serviceRawFile": "\r\nservice: aws-lambda-nodejs\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs18.x\r\n  region: eu-north-1\r\n  environment:\r\n    USERS_TABLE: UsersTable\r\n\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - dynamodb:Scan\r\n        - dynamodb:GetItem\r\n        - dynamodb:Query\r\n      Resource:\r\n        - arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable\r\n\r\nfunctions:\r\n  - ${file(functions/createUser.yml)}\r\n  - ${file(functions/getUser.yml)}\r\n  - ${file(functions/getUsers.yml)}\r\n  - ${file(functions/deleteUser.yml)}\r\n  - ${file(functions/loginUser.yml)}\r\n\r\nresources:\r\n  Resources:\r\n    ${file(resources/usersTable.yml)}\r\n\r\nplugins:\r\n  - serverless-offline\r\n  - serverless-plugin-split-stacks",
+    "serviceRawFile": "\r\nservice: aws-lambda-nodejs\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs18.x\r\n  region: eu-north-1\r\n  environment:\r\n    USERS_TABLE: UsersTable\r\n    SECRET_KEY: ${env:SECRET_KEY}\r\n\r\n  iamRoleStatements:\r\n    - Effect: Allow\r\n      Action:\r\n        - dynamodb:Scan\r\n        - dynamodb:GetItem\r\n        - dynamodb:Query\r\n        - dynamodb:PutItem\r\n      Resource:\r\n        - arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable\r\n\r\n\r\ncustom:\r\n  documentation:\r\n    version: 1.0.0\r\n    title: Pohlman Protean API\r\n    description: API to manage users and data.\r\n    tags:\r\n      - name: UsersTable\r\n        description: Endpoints related to user management.\r\n\r\nfunctions:\r\n  - ${file(functions/createUser.yml)}\r\n  - ${file(functions/getUser.yml)}\r\n  - ${file(functions/getUsers.yml)}\r\n  - ${file(functions/deleteUser.yml)}\r\n  - ${file(functions/loginUser.yml)}\r\n\r\nresources:\r\n  Resources:\r\n    ${file(resources/usersTable.yml)}\r\n\r\nplugins:\r\n  - serverless-offline\r\n  - serverless-openapi-documentation",
     "command": [
-      "offline"
+      "openapi",
+      "generate"
     ],
     "options": {},
-    "error": {
-      "message": "Serverless plugin \"serverless-plugin-split-stacks\" not found. Make sure it's installed and listed in the \"plugins\" section of your serverless config file. Use the --debug flag to learn more.",
-      "stack": "ServerlessError2: Serverless plugin \"serverless-plugin-split-stacks\" not found. Make sure it's installed and listed in the \"plugins\" section of your serverless config file. Use the --debug flag to learn more.\n    at PluginManager.resolveServicePlugins (file:///C:/Users/robin/.serverless/releases/4.4.18/package/dist/sf-core.js:925:2671)\n    at async PluginManager.loadAllPlugins (file:///C:/Users/robin/.serverless/releases/4.4.18/package/dist/sf-core.js:925:1293)\n    at async Serverless.init (file:///C:/Users/robin/.serverless/releases/4.4.18/package/dist/sf-core.js:932:9985)\n    at async runFramework (file:///C:/Users/robin/.serverless/releases/4.4.18/package/dist/sf-core.js:980:1336)\n    at async route (file:///C:/Users/robin/.serverless/releases/4.4.18/package/dist/sf-core.js:1010:14772)\n    at async Object.run2 [as run] (file:///C:/Users/robin/.serverless/releases/4.4.18/package/dist/sf-core.js:1010:15173)\n    at async run3 (file:///C:/Users/robin/.serverless/releases/4.4.18/package/dist/sf-core.js:1010:16435)",
-      "code": "PLUGIN_NOT_FOUND"
-    },
+    "error": null,
     "params": {},
     "machineId": "b7284f1a72f489c6a884b8c92ccc722d",
     "stage": "dev",
@@ -444,39 +612,41 @@
     "serviceProviderAwsAccountId": "867344453761",
     "projectType": "traditional",
     "versionSf": "4.4.18",
+    "serviceProviderAwsCfStackName": "aws-lambda-nodejs-dev",
+    "integrations": {},
     "serviceUniqueId": "arn:aws:cloudformation:eu-north-1:867344453761:stack/aws-lambda-nodejs-dev/ed622640-c8d0-11ef-8029-0af538f24e89",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-north-1:867344453761:stack/aws-lambda-nodejs-dev/ed622640-c8d0-11ef-8029-0af538f24e89",
     "serviceProviderAwsCfStackCreated": "2025-01-02T06:15:13.763Z",
-    "serviceProviderAwsCfStackUpdated": "2025-01-03T06:45:06.419Z",
+    "serviceProviderAwsCfStackUpdated": "2025-01-03T07:52:51.948Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "DeleteUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-deleteUser:29",
+        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-deleteUser:33",
         "Description": "Current Lambda function version",
         "ExportName": "sls-aws-lambda-nodejs-dev-DeleteUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetUsersLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-getUsers:29",
+        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-getUsers:33",
         "Description": "Current Lambda function version",
         "ExportName": "sls-aws-lambda-nodejs-dev-GetUsersLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "LoginUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-loginUser:10",
+        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-loginUser:14",
         "Description": "Current Lambda function version",
         "ExportName": "sls-aws-lambda-nodejs-dev-LoginUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "CreateUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-createUser:29",
+        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-createUser:33",
         "Description": "Current Lambda function version",
         "ExportName": "sls-aws-lambda-nodejs-dev-CreateUserLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetUserLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-getUser:29",
+        "OutputValue": "arn:aws:lambda:eu-north-1:867344453761:function:aws-lambda-nodejs-dev-getUser:33",
         "Description": "Current Lambda function version",
         "ExportName": "sls-aws-lambda-nodejs-dev-GetUserLambdaFunctionQualifiedArn"
       },

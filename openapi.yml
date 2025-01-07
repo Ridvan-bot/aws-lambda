@@ -1,0 +1,9 @@
+openapi: 3.0.0
+components:
+  schemas: {}
+  securitySchemes: {}
+info:
+  title: Pohlman Protean API
+  description: API to manage users and data.
+  version: 1.0.0
+paths: {}

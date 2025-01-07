@@ -4,7 +4,8 @@
   "description": "Contains AWS Lambda Functions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "document": "sls openapi generate"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.2",
     "serverless-offline": "^14.4.0",
+    "serverless-openapi-documentation": "^0.4.0",
     "typescript": "^5.7.2"
   },
   "dependencies": {
@@ -27,12 +29,16 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.1",
     "@semantic-release/npm": "^12.0.1",
+    "ajv": "^8.17.1",
     "archiver": "^7.0.1",
     "aws-sdk": "^2.1692.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "dotenv": "^10.0.0",
     "jsonwebtoken": "^9.0.2",
     "semantic-release": "^24.2.0",
-    "serverless": "^4.4.18"
+    "serverless": "^4.4.18",
+    "swagger2openapi": "^7.0.8",
+    "uuid": "^11.0.4",
+    "yargs-parser": "^21.1.1"
   }
 }

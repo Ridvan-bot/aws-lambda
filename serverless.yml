@@ -19,6 +19,16 @@ provider:
       Resource:
         - arn:aws:dynamodb:eu-north-1:867344453761:table/UsersTable
 
+
+custom:
+  documentation:
+    version: 1.0.0
+    title: Pohlman Protean API
+    description: API to manage users and data.
+    tags:
+      - name: UsersTable
+        description: Endpoints related to user management.
+
 functions:
   - ${file(functions/createUser.yml)}
   - ${file(functions/getUser.yml)}
@@ -32,3 +42,4 @@ resources:
 
 plugins:
   - serverless-offline
+  - serverless-openapi-documentation

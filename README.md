@@ -16,14 +16,6 @@ Contains AWS Lambda Functions
    - Set Default region name to: `eu-north-1` (Europe, Stockholm)
    - Set Default output format to: `json`
 
-## Project Setup Commands
-
-```sh
-npm init -y
-npm install --save-dev typescript @types/aws-lambda @types/node
-npm install @aws-sdk/client-dynamodb serverless serverless-offline
-npx tsc --init
-```
 
 ## Install Dependencies
 

@@ -31,7 +31,7 @@ jobs:
   # Execute semantic release only if branches is "main"
   execute-semantic-release:
     if: ${{ inputs.branches == 'main' }}
-    uses: Ridvan-bot/workflows/.github/workflows/semantic-release.yml@dev
+    uses: Ridvan-bot/workflows/.github/workflows/semantic-release.yml@main
     with:
       branches: "${{ inputs.branches }}"
       slack_enabled: "${{ inputs.slack_enabled }}"

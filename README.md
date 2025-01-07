@@ -67,7 +67,15 @@ Make sure to set up your environment variables in a `.env` file or directly in t
 .
 ├── src
 │   ├── handler.ts
-│   └── second.ts
+│   └── middleware.ts
+├── resources
+│   ├── usersTable.yml
+├── functions
+│   ├── createUser.yml
+│   ├── deleteUser.yml
+│   ├── getUser.yml
+│   ├── getUsers.yml
+│   └── loginUser.yml
 ├── dist
 ├── node_modules
 ├── .gitignore

@@ -85,3 +85,7 @@ Make sure to set up your environment variables in a `.env` file or directly in t
 └── README.md
 ```
 
+##
+<p align="center">
+  Crafted with care by <strong>Robin Pohlman</strong> at <strong>Pohlman Protean AB</strong>.
+</p>
